@@ -56,7 +56,6 @@ export default function Deposit() {
 
     function onMethodChanged(e) {
         setSelectedMethodUuid(e.target.value)
-
     }
 
     useEffect(() => {
