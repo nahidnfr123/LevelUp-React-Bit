@@ -44,6 +44,7 @@
   scale: calc(1 + (var(--active) * 0.1));
   height: 150px;
   width: 150px;
+  perspective: 1200px;
 
   /*    -ms-transform-style: preserve-3d; */
   /*   -webkit-transform-style: preserve-3d; */
@@ -222,6 +223,7 @@
     letter-spacing: 4px;
     transition: text-shadow .1s ease-out, background-color .2s ease-out;
 
+    perspective: 1200px;
     -ms-transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
