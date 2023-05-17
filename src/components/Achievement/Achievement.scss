@@ -7,6 +7,7 @@
 
 .achievementCard {
   position: absolute;
+  z-index: 1000;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -58,43 +59,20 @@
   scale: 1;
 }
 
-svg {
-  overflow: visible !important;
-}
-
 .badge,
 .badge-svg {
   transition: all ease-in-out;
 }
 
-.badge-svg.previous {
-  opacity: 1;
-  animation: animateUp1 1s 2s cubic-bezier(0.68, -1, 0.27, 1.55) forwards;
-}
-
-.badge-svg.current {
-  opacity: 0;
-  animation: animateUp2 1s 2s cubic-bezier(0.68, -1.55, 0.27, 1.8) forwards;
-  /*animation: bounce 600ms 3s cubic-bezier(0.68, -1.55, 0.27, 1.55) forwards;*/
-}
-
-.badge-svg:before {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(to right, #DDD, #FFF, #DDD);
-  position: absolute;
-  z-index: 4;
-  animation: flash 1s infinite;
-}
-
-@keyFrames flash {
-  from {
-    left: -100%;
+.badge-svg {
+  &.previous {
+    opacity: 1;
+    animation: animateUp1 1s 2s cubic-bezier(0.68, -1, 0.27, 1.55) forwards;
   }
-  to {
-    left: 100%;
+
+  &.current {
+    opacity: 0;
+    animation: animateUp2 1s 2s cubic-bezier(0.68, -1.55, 0.27, 2) forwards;
   }
 }
 
@@ -119,27 +97,17 @@ svg {
   }
 }
 
-@keyframes bounce {
-  from {
-    opacity: 1;
-    transform: translateY(-100%) scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(-100%) scale(1);
-  }
-}
-
 @keyframes coin {
   0% {
     transform: translateY(60px) scale(0.4);
   }
-  90% {
-    transform: translateY(0) scale(1);
+  80% {
+    transform: translateY(0) scale(1.2);
   }
   100% {
-    box-shadow: 0 0 calc(var(--active) * 6em) calc(var(--active) * 3em) hsl(260 97% 61% / 0.6),
-    0 0 60px 10px hsl(260 97% 61% / 0.6) inset;
+    transform: translateY(0) scale(1);
+    box-shadow: 0 0 calc(var(--active) * 6em) calc(var(--active) * 2em) hsl(260 97% 61% / 0.5),
+    0 0 60px 10px hsl(260 97% 61% / 0.5) inset;
   }
 }
 
@@ -179,13 +147,6 @@ svg {
   --active: 1;
   --play-state: runnin;
 }
-
-//.bodydrop {
-//  /*   background: hsl(260 calc(var(--active) * 97%) 6%); */
-//  position: fixed;
-//  inset: 0;
-//  z-index: -1;
-//}
 
 /* .badge:is(:hover, :focus-visible) { */
 .badge {
@@ -252,7 +213,7 @@ svg {
     font-size: clamp(3rem, 10vw, 3rem);
     //color: transparent;
     color: #f35626;
-    background-color: rgba(82, 96, 117, 0.4);
+    background-color: rgba(82, 96, 117, 0.6);
     background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
     text-shadow: rgba(255, 255, 255, 0.5) 0 5px 6px, rgba(255, 255, 255, 0.2) 1px 3px 3px;
     text-stroke: 0;
@@ -268,6 +229,7 @@ svg {
     text-align: center;
     text-rendering: optimizeLegibility;
     text-transform: uppercase;
+    transform-origin: center center;
 
     &.previous {
       position: absolute;
@@ -275,12 +237,14 @@ svg {
       left: 50%;
       transform: rotateX(0deg) translate(-50%, -50%);
       opacity: 1;
-      animation: fadeIn 2s ease-in-out forwards, flipTextUp1 400ms ease-in-out 2.6s forwards;
+      animation: textColor 1s ease-in-out infinite alternate,
+      fadeIn 2s ease-in-out forwards, flipTextUp1 400ms ease-in-out 2.6s forwards;
     }
 
     &.current {
       opacity: 0;
-      animation: flipTextUp2 400ms ease-in-out 3s forwards;
+      animation: textColor 1s ease-in-out infinite alternate,
+      flipTextUp2 400ms ease-in-out 3s forwards;
     }
   }
 }
@@ -296,22 +260,32 @@ svg {
 
 @keyframes flipTextUp1 {
   0% {
-    transform: rotateX(0deg) translate(-50%, 0%);
+    transform: perspective(600px) rotateX(0deg) translate(-50%, 0%);
   }
   80% {
     opacity: 0;
   }
   100% {
-    transform: rotateX(90deg) translate(-50%, -200px);
+    transform: perspective(600px) rotateX(90deg) translate(-50%, -200%);
   }
 }
 
 @keyframes flipTextUp2 {
   0% {
-    transform: rotateX(-90deg) translateY(120px);
+    transform: perspective(600px) rotateX(-90deg) translateY(120%);
   }
   100% {
     opacity: 1;
-    transform: rotateX(0deg) translateY(0);
+    transform: perspective(600px) rotateX(0deg) translateY(0);
+  }
+}
+
+
+@keyframes textColor {
+  0% {
+    text-shadow: rgba(255, 255, 255, 0.5) 0 5px 6px, rgba(255, 255, 255, 0.1) 1px 3px 3px;
+  }
+  100% {
+    text-shadow: rgba(255, 233, 176, 0.6) 0 5px 6px, rgba(244, 179, 6, 0.1) 1px 3px 3px;
   }
 }

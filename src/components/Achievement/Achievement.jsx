@@ -19,7 +19,7 @@ export default function Achievement() {
         	--alpha: ${RANDOM(40, 90) / 100};
         	--origin-x: ${Math.random() > 0.5 ? RANDOM(300, 800) * -1 : RANDOM(300, 800)}%;
         	--origin-y: ${Math.random() > 0.5 ? RANDOM(300, 800) * -1 : RANDOM(300, 800)}%;
-        	--size: ${RANDOM(40, 90) / 100};
+        	--size: ${RANDOM(40, 60) / 100};
         `)
     })
     const card = document.querySelector(".achievementCard")
