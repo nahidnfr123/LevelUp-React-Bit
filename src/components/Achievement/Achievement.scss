@@ -69,12 +69,11 @@ svg {
 
 .badge-svg.previous {
   opacity: 1;
-  animation: animateUp1 1s 2s cubic-bezier(0.68, -1.55, 0.27, 1.55) forwards;
+  animation: animateUp1 1s 2s cubic-bezier(0.68, -1, 0.27, 1.55) forwards;
 }
 
 .badge-svg.current {
   opacity: 0;
-  animation: flip 1s 2s cubic-bezier(0.68, -1.55, 0.27, 1.55) forwards;
   animation: animateUp2 1s 2s cubic-bezier(0.68, -1.55, 0.27, 1.55) forwards;
   /*animation: bounce 600ms 3s cubic-bezier(0.68, -1.55, 0.27, 1.55) forwards;*/
 }
@@ -251,12 +250,12 @@ svg {
     //text-stroke: 2px rgba(0,0,0,0.2); /* Text stroke */
     font: 400 1.6em/1 'Alfa Slab One', serif;
     font-size: clamp(3rem, 10vw, 3rem);
-    text-stroke: 0;
+    //color: transparent;
     color: #f35626;
     background-color: rgba(82, 96, 117, 0.4);
     background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
     text-shadow: rgba(255, 255, 255, 0.5) 0 5px 6px, rgba(255, 255, 255, 0.2) 1px 3px 3px;
-    //color: transparent;
+    text-stroke: 0;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: 4px;
@@ -276,12 +275,12 @@ svg {
       left: 50%;
       transform: rotateX(0deg) translate(-50%, -50%);
       opacity: 1;
-      animation: fadeIn 2s ease-in-out forwards, flipTextUp1 600ms ease-in-out 2.6s forwards;
+      animation: fadeIn 2s ease-in-out forwards, flipTextUp1 400ms ease-in-out 2.6s forwards;
     }
 
     &.current {
       opacity: 0;
-      animation: flipTextUp2 1s ease-in-out 3s forwards;
+      animation: flipTextUp2 400ms ease-in-out 3s forwards;
     }
   }
 }
