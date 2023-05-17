@@ -74,7 +74,7 @@ svg {
 
 .badge-svg.current {
   opacity: 0;
-  animation: animateUp2 1s 2s cubic-bezier(0.68, -1.55, 0.27, 1.55) forwards;
+  animation: animateUp2 1s 2s cubic-bezier(0.68, -1.55, 0.27, 1.8) forwards;
   /*animation: bounce 600ms 3s cubic-bezier(0.68, -1.55, 0.27, 1.55) forwards;*/
 }
 
@@ -244,7 +244,7 @@ svg {
   position: relative;
   width: 100%;
   text-align: center;
-  margin-top: 5rem;
+  margin-top: 3rem;
 
   h3 {
     //text-stroke: 2px rgba(0,0,0,0.2); /* Text stroke */
