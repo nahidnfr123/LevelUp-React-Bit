@@ -1,10 +1,12 @@
 import Particle from "./Particle";
 import party from "party-js";
 import './Achievement.scss';
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import $api from "../../services/api.service";
 
 export default function Achievement({currentLevel, previousLevel, uuid, toggleCard}) {
+
+  const [whatsNew, setWhatsNew] = useState({})
 
 // document.querySelector(".sparkle-button").addEventListener("click", function (e) {
   useEffect(() => {
@@ -57,8 +59,23 @@ export default function Achievement({currentLevel, previousLevel, uuid, toggleCa
     clearInterval(timer)
   }
 
+  const whatsNewDialog = async () => {
+    const whatsNewButton = document.getElementsByClassName('whatsNew')
+    if (uuid && (!whatsNew || !Object.keys(whatsNew).length)) {
+      const response = await $api.get('/user-level/whats-new/' + uuid)
+      if (response.data) {
+        setWhatsNew(response.data)
+      }
+    }
+    if (whatsNewButton) whatsNewButton[0].classList.toggle('active')
+  }
+
   return (
       <div className='achievementCard'>
+        <div className='cardTitle'>
+          <h2>New Achievement.</h2>
+          <div>You just earned a new badge.</div>
+        </div>
         <div className="sparkleButton" onClick={animateButton}>
           <div className='badge'>
             <img className='badge-svg previous' src={previousLevel?.logo} alt="" height='150' width='150'/>
@@ -73,7 +90,43 @@ export default function Achievement({currentLevel, previousLevel, uuid, toggleCa
           <h3 className="previous">{previousLevel?.name}</h3>
           <h3 className="current">{currentLevel?.name}</h3>
         </div>
-        <button className='okButton' onClick={markAsSeen}>Ok</button>
+
+        <div className='cardButtons'>
+          <button className='btn whatsNewButton' onClick={whatsNewDialog}>
+            What's new ?
+          </button>
+          <button className='btn okButton' onClick={markAsSeen}>Ok</button>
+        </div>
+
+        <div className='whatsNew'>
+          <div className='overlay' onClick={whatsNewDialog}></div>
+          <div className='content'>
+            <h3>What's new ?</h3>
+            <div className='levelCompare'>
+              {whatsNew && Object.keys(whatsNew).length && <>
+                <ul className='previous'>
+                  <li>
+                    <img src={whatsNew?.previous_level?.logo} alt="" height='60' width='60'/>
+                    <h2>{whatsNew?.previous_level?.name}</h2>
+                  </li>
+                  {whatsNew?.previous_level?.level_points.map((data, n) => (
+                      <li key={n}>{data?.key_name} : {data?.point} points</li>
+                  ))}
+                </ul>
+                <div className='divider'></div>
+                <ul>
+                  <li>
+                    <img src={whatsNew?.level?.logo} alt="" height='60' width='60'/>
+                    <h2>{whatsNew?.level?.name}</h2>
+                  </li>
+                  {whatsNew?.level?.level_points.map((data, n) => (
+                      <li key={n}>{data?.key_name} : {data?.point} points</li>
+                  ))}
+                </ul>
+              </>}
+            </div>
+          </div>
+        </div>
       </div>
   )
 }
