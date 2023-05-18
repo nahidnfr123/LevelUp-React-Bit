@@ -110,7 +110,9 @@ export default function Achievement({currentLevel, previousLevel, uuid, toggleCa
                     <h2>{whatsNew?.previous_level?.name}</h2>
                   </li>
                   {whatsNew?.previous_level?.level_points.map((data, n) => (
-                      <li key={n}>{data?.key_name} : {data?.point} points</li>
+                      <li key={n}>
+                        <del>{data?.key_name} : {data?.point} points</del>
+                      </li>
                   ))}
                 </ul>
                 <div className='divider'></div>
