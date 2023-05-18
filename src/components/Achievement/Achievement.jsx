@@ -3,8 +3,7 @@ import party from "party-js";
 import './Achievement.scss';
 import {useEffect} from "react";
 
-export default function Achievement() {
-
+export default function Achievement({currentLevel, previousLevel}) {
 
 // document.querySelector(".sparkle-button").addEventListener("click", function (e) {
   useEffect(() => {
@@ -19,34 +18,36 @@ export default function Achievement() {
         	--alpha: ${RANDOM(40, 90) / 100};
         	--origin-x: ${Math.random() > 0.5 ? RANDOM(300, 800) * -1 : RANDOM(300, 800)}%;
         	--origin-y: ${Math.random() > 0.5 ? RANDOM(300, 800) * -1 : RANDOM(300, 800)}%;
-        	--size: ${RANDOM(40, 60) / 100};
+        	--size: ${RANDOM(40, 90) / 100};
         `)
     })
-    const card = document.querySelector(".achievementCard")
-    party.confetti(card, {
-      count: party.variation.range(80, 150),
-      size: party.variation.range(0.2, 1.4),
-      speed: party.variation.range(500, 1000),
-    });
+    const card = document.querySelector(".badge")
+    if (card) {
+      party.confetti(card, {
+        count: party.variation.range(160, 200),
+        size: party.variation.range(0.2, 1.4),
+        speed: party.variation.range(500, 1000),
+      });
+    }
   })
 // });
   return (
       <div className='achievementCard'>
-        <div className="sparkle-button">
+        <div className="sparkleButton">
           <div className='badge'>
-            <img className='badge-svg previous' src="./Superstar.png" alt="" height='150' width='150'/>
-            <img className='badge-svg current ' src="./Semi-Pro.png" alt="" height='150' width='150'/>
+            <img className='badge-svg previous' src={previousLevel.logo} alt="" height='150' width='150'/>
+            <img className='badge-svg current ' src={currentLevel.logo} alt="" height='150' width='150'/>
           </div>
           <span aria-hidden="true" className="particle-pen">
-                    {[...Array(20)].map((i, n) => <Particle key={n + 'particles'}/>)}
+                    {[...Array(26)].map((i, n) => <Particle key={n + 'particles'}/>)}
                 </span>
         </div>
 
-        <div className='level-text'>
-          <h3 className="previous">Superstar</h3>
-          <h3 className="current">Semi-Pro</h3>
+        <div className='levelText'>
+          <h3 className="previous">{previousLevel.name}</h3>
+          <h3 className="current">{currentLevel.name}</h3>
         </div>
-
+        {/*<button className='okButton'>Ok</button>*/}
       </div>
   )
 }

@@ -144,9 +144,13 @@ export function ResponsiveAppBar() {
               ))}
             </Box>
 
-            <Box sx={{flexGrow: 0}}>
+            <Box sx={{flexGrow: 0, display: 'flex'}}>
               {auth.isLoggedIn ?
                   <>
+                    <div style={{textAlign: 'center', display: 'flex', flexDirection: 'column', marginRight: '20px'}}>
+                      <img src={user?.userLevel?.level?.logo} alt="" height='30' width='30'/>
+                      <small>{user?.userLevel?.point}</small>
+                    </div>
                     <Tooltip title="Open settings">
                       <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
                         {user?.avatar ?

@@ -6,6 +6,8 @@ import {unsetUser, setUser} from "../store/authSlice";
 import {useDispatch} from "react-redux";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import Container from '@mui/material/Container';
+import AchievementContainer from "../components/Achievement/AchievementContainer";
+import * as React from "react";
 
 const theme = createTheme();
 
@@ -33,6 +35,7 @@ const DefaultLayout = () => {
         <ThemeProvider theme={theme}>
           <AppBar/>
           <Container component="main" maxWidth="lg">
+            <AchievementContainer/>
             {/*{Object.entries(auth).map(([key, value], i) => (
             <div className="item" key={key}>
               {key}: {value}

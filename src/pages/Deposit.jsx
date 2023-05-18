@@ -11,7 +11,6 @@ import {FormLabel, Radio, RadioGroup} from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Paper from '@mui/material/Paper';
 import Grid from "@mui/material/Grid";
-import AchievementContainer from "../components/Achievement/AchievementContainer";
 
 export default function Deposit() {
   const isMounted = useRef(false)
@@ -91,7 +90,6 @@ export default function Deposit() {
 
   return (
       <main>
-       <AchievementContainer/>
         <Box
             sx={{
               pt: 8,
