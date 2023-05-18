@@ -21,13 +21,19 @@ export default function AchievementContainer() {
   const auth = useSelector((state) => state.auth)
   const user = auth.user
 
+  const toggleCard = () => {
+    setShowAchievement(!showAchievement)
+  }
+
   return (
       <>
         {
-            ((user && !user?.userLevel?.seen) && showAchievement) &&
+            ((user && user?.userLevel && !user?.userLevel?.seen) && showAchievement) &&
             <Achievement
                 currentLevel={user?.userLevel?.level}
                 previousLevel={user?.userLevel?.previous_level}
+                uuid={user?.userLevel?.uuid}
+                toggleCard={toggleCard}
             />
         }
       </>
