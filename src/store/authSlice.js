@@ -18,7 +18,7 @@ export const authSlice = createSlice({
     },
     setUser(state, data) {
       const payload = data.payload
-      console.log(data.payload)
+      // console.log(data.payload)
       state.token = accessToken() || null
       state.user = payload || null
       state.isLoggedIn = !!(state.token && state.user && Object.keys(state.user).length)
