@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
 
 :root {
   --transition: 0.25s;
@@ -34,6 +35,7 @@
   }
 
   .cardTitle {
+    font-family: 'Inter', sans-serif;
     text-align: center;
     color: hsl(229, 37%, 47%);
     padding: 6px 0;
@@ -76,13 +78,14 @@
   align-items: center;
   justify-content: flex-start;
   border-radius: 100px;
+  //background: red;
   background: hsl(260 97% 61% / 0.2);
   transition: box-shadow var(--transition), scale var(--transition), background var(--transition) ease-in-out !important;
   //transition: all ease-in-out 0.2s !important;
   scale: calc(1 + (var(--active) * 0.1));
   height: 150px;
   width: 150px;
-  perspective: 1200px;
+  //perspective: 1200px;
 
   /*    -ms-transform-style: preserve-3d; */
   /*   -webkit-transform-style: preserve-3d; */
@@ -96,6 +99,7 @@
 
 .sparkleButton {
   background: transparent;
+  z-index: 15;
 }
 
 
@@ -311,6 +315,8 @@
     opacity: 0;
   }
   100% {
+    visibility: hidden;
+    pointer-events: none;
     transform: perspective(2000px) rotateX(90deg) translate(-50%, -200%);
   }
 }
