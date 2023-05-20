@@ -74,7 +74,7 @@ export default function Achievement({currentLevel, previousLevel, uuid, toggleCa
       <div className='achievementCard'>
         <div className='cardTitle'>
           <h2>New Achievement.</h2>
-          <div>You just earned a new badge.</div>
+          <div>You have just earned a new badge.</div>
         </div>
         <div className="sparkleButton" onClick={animateButton}>
           <div className='badge'>
