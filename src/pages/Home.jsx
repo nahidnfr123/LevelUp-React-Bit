@@ -3,13 +3,7 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-
 export default function Home() {
-
-  // useEffect(() => {
-  //   const r = $api.get('refresh-token')
-  //   console.log(r.data)
-  // })
   return (
       <main>
         {/* Hero unit */}
