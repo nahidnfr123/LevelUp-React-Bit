@@ -19,7 +19,7 @@ export default function Dashboard() {
     cluster: 'ap2',
     forceTLS: true,
     encrypted: true,
-    authEndpoint: 'http://127.0.0.1:8000/api/broadcasting/auth',
+    authEndpoint: 'http://192.168.12.207:8080/api/broadcasting/auth',
     auth: {
       headers: {
         Authorization: `Bearer ${accessToken()}`,
