@@ -31,7 +31,7 @@ export async function login(data) {
 }
 
 export async function logout() {
-  const response = await $api.post('/logout', {});
+  const response = await $api.get('/signout', {});
 
   if (response.message === 'success') accessToken(null, true)
   return response
